@@ -1,5 +1,4 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { SearchService } from './search.service';
 import { HttpClientModule } from '@angular/common/http';
 
