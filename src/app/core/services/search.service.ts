@@ -1,8 +1,7 @@
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/observable/of';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { StackexchangeSearchDTO } from '../dtos';
 
 export interface ISearchResultItem {
