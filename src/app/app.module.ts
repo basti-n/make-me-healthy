@@ -1,30 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
-import {SearchService} from "./core/services/search.service";
-import {AppRoutingModule} from "./app.routing.module";
+import { SearchService } from './core/services/search.service';
+import { AppRoutingModule } from './app.routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {LayoutModule} from "./core/layout/layout.module";
+import { LayoutModule } from './core/layout/layout.module';
 import { SearchComponent } from './search/search.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    SearchComponent
-  ],
+  declarations: [AppComponent, DashboardComponent, SearchComponent],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
 
     LayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [SearchService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
