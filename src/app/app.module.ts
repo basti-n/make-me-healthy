@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from './core/layout/layout.module';
 import { SearchComponent } from './search/search.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ClientIdInterceptor } from './core/interceptors/client-id.interceptor';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, SearchComponent],
@@ -19,7 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     AppRoutingModule,
   ],
-  providers: [SearchService],
+  providers: [
+    SearchService,
+    { provide: HTTP_INTERCEPTORS, useClass: ClientIdInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

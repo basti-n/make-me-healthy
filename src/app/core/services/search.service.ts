@@ -18,12 +18,17 @@ export interface ISearchResultItem {
   view_count: number;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SearchService {
   private static readonly apiUrl =
     'https://api.stackexchange.com/2.2/search?pagesize=20&order=desc&sort=activity&site=stackoverflow&intitle=';
 
   constructor(private http: HttpClient) {}
+
+  isSearchRequest(url: string): boolean {
+    const identifiers = ['api.stackexchange', 'search'];
+    return identifiers.every((identifier) => url.includes(identifier));
+  }
 
   search(keyword: string): Observable<StackexchangeSearchDTO> {
     return this.http
