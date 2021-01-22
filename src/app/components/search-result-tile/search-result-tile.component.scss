@@ -1,0 +1,7 @@
+@import '/src/styles.scss';
+
+.avatar {
+  height: 100px;
+  width: auto;
+  @include border-radius(50%);
+}

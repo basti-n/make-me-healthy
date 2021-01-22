@@ -1,0 +1,38 @@
+<li
+  class="bg-gray-light list-group-item list-style-none margin-top-5"
+  [ngClass]="{
+    'list-group-item-danger': !result.is_answered,
+    'list-group-item-success': !!result.is_answered
+  }"
+>
+  <div class="list-group-item-heading">
+    <h3>{{ result.title }}</h3>
+  </div>
+  <div class="flex gap-10" user-header>
+    <img
+      class="avatar"
+      *ngIf="result?.owner?.profile_image"
+      [src]="result?.owner?.profile_image"
+      [appImageFallback]="fallbackImage"
+      alt="avatar"
+    />
+    <div>
+      <a [href]="result.link" target="__blank" rel="noreferrer">View Details</a>
+      <p>Answered: {{ result.is_answered }}</p>
+      <p>
+        Date created: {{ result.creation_date | unixTimeToDatetime: 'short' }}
+      </p>
+      <p>
+        Date last changed:
+        {{ result.last_edit_date | unixTimeToDatetime: 'short' }}
+      </p>
+    </div>
+  </div>
+  <div class="flex">
+    <span
+      class="bg-aero padding-10 margin-right-10"
+      *ngFor="let tag of result.tags"
+      >{{ tag }}</span
+    >
+  </div>
+</li>

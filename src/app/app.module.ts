@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { SearchService } from './core/services/search.service';
 import { AppRoutingModule } from './app.routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LayoutModule } from './core/layout/layout.module';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './pages/search/search.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClientIdInterceptor } from './core/interceptors/client-id.interceptor';
+import { SearchResultTileModule } from './components/search-result-tile';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, SearchComponent],
@@ -16,13 +19,14 @@ import { ClientIdInterceptor } from './core/interceptors/client-id.interceptor';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-
     LayoutModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    SearchResultTileModule,
   ],
   providers: [
-    SearchService,
     { provide: HTTP_INTERCEPTORS, useClass: ClientIdInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'de' },
   ],
   bootstrap: [AppComponent],
 })

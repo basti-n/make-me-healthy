@@ -1,15 +1,15 @@
+import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { SearchService } from '../services';
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClientIdInterceptor } from './client-id.interceptor';
 import { take } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { StackExchangeSearchService } from '../services/search/stackexchange.service';
 
 @Injectable()
 export class MockOtherService {
@@ -23,14 +23,14 @@ export class MockOtherService {
 
 describe('ClientIdInterceptor', () => {
   let httpMock: HttpTestingController;
-  let searchService: SearchService;
+  let searchService: StackExchangeSearchService;
   let otherService: { search: () => Observable<unknown> };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        SearchService,
+        StackExchangeSearchService,
         MockOtherService,
         {
           provide: HTTP_INTERCEPTORS,
@@ -40,7 +40,7 @@ describe('ClientIdInterceptor', () => {
       ],
     });
 
-    searchService = TestBed.inject(SearchService);
+    searchService = TestBed.inject(StackExchangeSearchService);
     httpMock = TestBed.inject(HttpTestingController);
     otherService = TestBed.inject(MockOtherService);
   });
@@ -49,7 +49,7 @@ describe('ClientIdInterceptor', () => {
     searchService.search(queryString).pipe(take(1)).subscribe();
 
     const request = httpMock.expectOne(
-      `${SearchService['apiUrl']}${queryString}&key=${environment.clientId}`
+      `${StackExchangeSearchService['apiUrl']}${queryString}&key=${environment.clientId}`
     );
     expect(request.request.params.get('key')).toBeTruthy();
   });

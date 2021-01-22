@@ -6,12 +6,12 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SearchService } from '../services';
 import { environment } from 'environments/environment';
+import { StackExchangeSearchService } from '../services/search/stackexchange.service';
 
 @Injectable()
 export class ClientIdInterceptor implements HttpInterceptor {
-  constructor(private readonly searchService: SearchService) {}
+  constructor(private readonly searchService: StackExchangeSearchService) {}
 
   intercept(
     req: HttpRequest<any>,

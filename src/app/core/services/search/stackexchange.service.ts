@@ -2,28 +2,17 @@ import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { StackexchangeSearchDTO } from '../dtos';
-
-export interface ISearchResultItem {
-  answer_count: number;
-  closed_date: number;
-  closed_reason: string;
-  creation_date: number;
-  is_answered: boolean;
-  last_activity_date: number;
-  link: string;
-  score: number;
-  tags: Array<string>;
-  title: string;
-  view_count: number;
-}
+import { StackexchangeSearchDTO } from '../../models/dtos';
+import { SearchService } from 'app/core/models/base';
 
 @Injectable({ providedIn: 'root' })
-export class SearchService {
+export class StackExchangeSearchService extends SearchService<StackexchangeSearchDTO> {
   private static readonly apiUrl =
     'https://api.stackexchange.com/2.2/search?pagesize=20&order=desc&sort=activity&site=stackoverflow&intitle=';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   isSearchRequest(url: string): boolean {
     const identifiers = ['api.stackexchange', 'search'];
@@ -32,7 +21,7 @@ export class SearchService {
 
   search(keyword: string): Observable<StackexchangeSearchDTO> {
     return this.http
-      .get<StackexchangeSearchDTO>(SearchService.apiUrl + keyword)
+      .get<StackexchangeSearchDTO>(StackExchangeSearchService.apiUrl + keyword)
       .pipe(
         tap(
           (data) =>
