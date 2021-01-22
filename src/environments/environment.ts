@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  clientId: '0qTOd5xgwBqeex49XIoJVA',
+  clientId: '0qTOd5xgwBqeex49XIoJVA((',
 };
