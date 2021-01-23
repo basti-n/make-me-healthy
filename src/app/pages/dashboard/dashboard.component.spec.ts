@@ -1,18 +1,26 @@
 import { DebugElement } from '@angular/core';
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AppRoutingModule } from 'app/app.routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardRoutingModule } from './dashboard.routing.module';
+import { Router, RouterLink } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let router: Router;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [AppRoutingModule, DashboardRoutingModule],
+        imports: [AppRoutingModule, RouterTestingModule.withRoutes([])],
         declarations: [DashboardComponent],
       }).compileComponents();
     })
@@ -21,6 +29,7 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -44,4 +53,21 @@ describe('DashboardComponent', () => {
       )
     );
   });
+
+  it('should link to the correct url', () => {
+    const routerlinks = fixture.debugElement.queryAll(By.directive(RouterLink));
+    expect(routerlinks[0].attributes['ng-reflect-router-link']).toContain(
+      component.widgetConfigs[0].route
+    );
+  });
+
+  it('should should navigate when clicking a routerlink', fakeAsync(() => {
+    spyOn(router, 'navigateByUrl').and.callFake(() => Promise.resolve(true));
+    const routerlinks = fixture.debugElement.queryAll(By.directive(RouterLink));
+
+    routerlinks[1].triggerEventHandler('click', {});
+    tick();
+
+    expect(router.navigateByUrl).toHaveBeenCalled();
+  }));
 });
