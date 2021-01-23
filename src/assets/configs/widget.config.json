@@ -1,0 +1,25 @@
+{
+  "widgetConfigs": [
+    {
+      "mode": "stackoverflow",
+      "itemSize": 10,
+      "queryString": "TypeScript",
+      "label": "TypeScript",
+      "route": "typescript"
+    },
+    {
+      "mode": "stackoverflow",
+      "itemSize": 10,
+      "queryString": "Angular",
+      "label": "Angular",
+      "route": "angular"
+    },
+    {
+      "mode": "mixed",
+      "itemSize": 10,
+      "queryString": "Weather",
+      "label": "Mixed",
+      "route": "weather"
+    }
+  ]
+}
