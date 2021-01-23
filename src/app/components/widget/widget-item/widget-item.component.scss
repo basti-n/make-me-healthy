@@ -1,9 +1,0 @@
-@import '/src/styles.scss';
-
-$widget-size: 40px;
-
-.avatar {
-  height: $widget-size;
-  width: $widget-size;
-  @include border-radius(50%);
-}

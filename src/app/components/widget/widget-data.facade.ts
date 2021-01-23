@@ -5,8 +5,10 @@ import { WeatherDay } from 'app/core/models/dtos';
 import { SearchItemDTO } from 'app/core/models/dtos/stackexchange-search-item.dto';
 import {
   StackExchangeSearchService,
-  WeatherService,
+  WeatherSearchService,
 } from 'app/core/services/search';
+import { WeatherUiService } from 'app/core/services/ui';
+import { pickRandomValues } from 'app/core/utils/lists';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -15,8 +17,9 @@ export class WidgetDataFacade {
   DEFAULT_WIDGET_SIZE = 10;
 
   constructor(
-    private readonly weatherService: WeatherService,
-    private readonly stackExchangeService: StackExchangeSearchService
+    private readonly WeatherSearchService: WeatherSearchService,
+    private readonly stackExchangeService: StackExchangeSearchService,
+    private readonly weatherUiService: WeatherUiService
   ) {}
 
   public getData$(config: WidgetConfig): Observable<WidgetItem[]> {
@@ -33,9 +36,10 @@ export class WidgetDataFacade {
   private getWeather$(
     size: number = this.DEFAULT_WIDGET_SIZE
   ): Observable<WidgetItem[]> {
-    return this.weatherService.search().pipe(
-      map((data) => data.days.map((day) => this.fromWeatherDay(day))),
-      map((items) => items.slice(0, size))
+    return this.WeatherSearchService.search().pipe(
+      map((data) =>
+        pickRandomValues(data.days, size).map((day) => this.fromWeatherDay(day))
+      )
     );
   }
 
@@ -43,10 +47,15 @@ export class WidgetDataFacade {
     size: number = this.DEFAULT_WIDGET_SIZE,
     queryString?: string
   ): Observable<WidgetItem[]> {
-    return this.stackExchangeService.search(queryString).pipe(
-      map((data) => data.items.map((item) => this.fromStackoverflowItem(item))),
-      map((items) => items.slice(0, size))
-    );
+    return this.stackExchangeService
+      .search(queryString)
+      .pipe(
+        map((data) =>
+          data.items
+            .slice(0, size)
+            .map((item) => this.fromStackoverflowItem(item))
+        )
+      );
   }
 
   private getMixed$(
@@ -73,10 +82,11 @@ export class WidgetDataFacade {
     return {
       headline: `${weatherDay.Datum} - ${weatherDay.Zeit} Uhr`,
       bullets: [
-        { label: 'Temperatur', value: `${weatherDay['Temp. 3']} Grad` },
+        { label: 'Temperatur', value: `${weatherDay['Temp. A.']} Grad` },
         { label: 'Luftdruck', value: weatherDay.Luftdruck },
         { label: 'Regen', value: weatherDay.Regen },
       ],
+      imageUrl: this.weatherUiService.getIcon(weatherDay),
     };
   }
 

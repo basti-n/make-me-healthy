@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { WidgetModule } from '../widget.module';
 import { WidgetItemComponent } from './widget-item.component';
 
 describe('WidgetItemComponent', () => {
@@ -8,9 +8,10 @@ describe('WidgetItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetItemComponent ]
-    })
-    .compileComponents();
+      imports: [
+        WidgetModule,
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
