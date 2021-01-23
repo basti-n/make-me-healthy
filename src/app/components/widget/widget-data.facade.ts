@@ -26,10 +26,10 @@ export class WidgetDataFacade {
     switch (config.mode) {
       case 'weather':
         return this.getWeather$(config.itemSize);
-      case 'stackoverflow':
-        return this.getStackoverflow$(config.itemSize, config.queryString);
+      case 'mixed':
+        return this.getMixed$(config.itemSize, config.queryString);
       default:
-        return this.getMixed$(config.itemSize);
+        return this.getStackoverflow$(config.itemSize, config.queryString);
     }
   }
 
@@ -82,7 +82,7 @@ export class WidgetDataFacade {
     return {
       headline: `${weatherDay.Datum} - ${weatherDay.Zeit} Uhr`,
       bullets: [
-        { label: 'Temperatur', value: `${weatherDay['Temp. A.']} Grad` },
+        { label: 'Temperatur', value: `${weatherDay['Temp. A.']} °` },
         { label: 'Luftdruck', value: `${weatherDay.Luftdruck} hPa` },
         { label: 'Niederschlag', value: `${weatherDay.Regen} l/m²` },
       ],

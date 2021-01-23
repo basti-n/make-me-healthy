@@ -1,3 +1,6 @@
 <section class="red-search__suggestions__results__items">
-  <app-widget-item *ngFor="let item of data$ | async" [item]="item"></app-widget-item>
+  <app-widget-item
+    *ngFor="let item of data$ | async"
+    [item]="item"
+  ></app-widget-item>
 </section>

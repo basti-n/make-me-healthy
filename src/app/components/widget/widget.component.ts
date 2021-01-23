@@ -1,13 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { WidgetConfig } from 'app/core/models/definitions/widget.config';
 import { WidgetItem } from 'app/core/models/definitions/widget.item';
 import { Observable } from 'rxjs';
 import { WidgetDataFacade } from './widget-data.facade';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-widget',
@@ -16,17 +12,18 @@ import { WidgetDataFacade } from './widget-data.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WidgetComponent implements OnInit {
-  @Input() config: WidgetConfig;
-
   data$: Observable<WidgetItem[]>;
 
-  constructor(private readonly widgetFacade: WidgetDataFacade) {}
+  constructor(
+    private readonly location: Location,
+    private readonly widgetFacade: WidgetDataFacade
+  ) {}
 
   ngOnInit(): void {
-    this.data$ = this.getData$(this.config)
+    this.data$ = this.getData$(this.location.getState() as WidgetConfig);
   }
 
-  getData$(config: WidgetConfig): Observable<WidgetItem[]> {
-    return this.widgetFacade.getData$(config)
+  getData$(config: WidgetConfig): Observable<WidgetItem[]> {
+    return this.widgetFacade.getData$(config);
   }
 }

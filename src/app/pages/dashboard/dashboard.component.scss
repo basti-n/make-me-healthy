@@ -1,0 +1,17 @@
+@import 'src/styles.scss';
+
+nav {
+  cursor: pointer;
+
+  .active {
+    background-color: $blue-light;
+    transition: all 1s ease-in-out;
+  }
+}
+
+app-widget {
+
+  &.visible  {
+    display: block;
+  }
+}

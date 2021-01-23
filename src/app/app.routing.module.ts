@@ -1,12 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
   { path: 'search', component: SearchComponent },
-  { path: '**', component: DashboardComponent },
+  { path: '**', redirectTo: 'search' },
 ];
 
 @NgModule({

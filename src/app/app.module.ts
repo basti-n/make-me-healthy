@@ -3,7 +3,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LayoutModule } from './core/layout/layout.module';
 import { SearchComponent } from './pages/search/search.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,11 +10,10 @@ import { ClientIdInterceptor } from './core/interceptors/client-id.interceptor';
 import { SearchResultTileModule } from './components/search-result-tile';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { WidgetModule } from './components/widget/widget.module';
 registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, SearchComponent],
+  declarations: [AppComponent, SearchComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -23,7 +21,6 @@ registerLocaleData(localeDe);
     LayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    WidgetModule,
     SearchResultTileModule,
   ],
   providers: [

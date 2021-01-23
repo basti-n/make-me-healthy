@@ -1,1 +1,13 @@
-<app-widget [config]="widgetConfig"></app-widget>
+<nav class="flex gap-15 margin-bottom-15 list-style-none">
+  <li
+    class="padding-15"
+    routerLinkActive="active"
+    [routerLink]="'/dashboard/' + config.route"
+    [state]="config"
+    *ngFor="let config of widgetConfigs; let index = index"
+  >
+    {{ config.label }}
+  </li>
+</nav>
+
+<router-outlet></router-outlet>
