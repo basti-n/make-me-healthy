@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
+import { WidgetDataFacade } from './widget-data.facade';
 import { WidgetComponent } from './widget.component';
 
 describe('WidgetComponent', () => {
@@ -8,6 +9,9 @@ describe('WidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [{
+        provide: WidgetDataFacade, useValue: {getData$: () => of([])}
+      }],
       declarations: [ WidgetComponent ]
     })
     .compileComponents();

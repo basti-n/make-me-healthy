@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { WidgetConfig } from 'app/core/models/definitions';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-  widgetConfig = { mode: 'mixed', itemSize: 10, queryString: 'Hello World' };
+  widgetConfig: WidgetConfig = {
+    mode: 'mixed',
+    itemSize: 10,
+    queryString: 'Hello World',
+  };
 
   constructor() {}
 
