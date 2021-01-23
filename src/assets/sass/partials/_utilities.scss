@@ -282,6 +282,10 @@
   gap: 10px;
 }
 
+.gap-15 {
+  gap: 15px;
+}
+
 .bg-gray {
   &:not(i) {
     background-color: $gray-scorpion !important;
@@ -682,6 +686,10 @@ i.bg-aero {
   display: block;
 }
 
+.text-lighter {
+  font-weight: lighter;
+}
+
 .text-extra-large {
   font-size: 17px !important;
 }
@@ -713,6 +721,10 @@ i.bg-aero {
 .flex {
   display: -webkit-flex;
   display: flex;
+
+  &.align-center {
+    align-items: center;
+  }
 
   &--column {
     -webkit-flex-direction: column;

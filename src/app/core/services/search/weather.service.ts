@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import weather from './weatherdata.json';
 
 @Injectable({ providedIn: 'root' })
-export class WeatherService extends SearchService<WeatherDTO> {
+export class WeatherSearchService extends SearchService<WeatherDTO> {
   private readonly data: WeatherDTO;
 
   constructor() {
@@ -14,10 +14,7 @@ export class WeatherService extends SearchService<WeatherDTO> {
     this.data = { days: weather };
   }
 
-  search(queryString: string): Observable<WeatherDTO> {
-    const matchingDays = this.data?.days?.filter((weatherDay) =>
-      weatherDay.Datum.includes(queryString)
-    );
-    return of({ days: matchingDays } as WeatherDTO);
+  search(): Observable<WeatherDTO> {
+    return of(this.data);
   }
 }

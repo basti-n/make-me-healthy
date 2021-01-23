@@ -11,6 +11,7 @@ import { ClientIdInterceptor } from './core/interceptors/client-id.interceptor';
 import { SearchResultTileModule } from './components/search-result-tile';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { WidgetModule } from './components/widget/widget.module';
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -22,6 +23,7 @@ registerLocaleData(localeDe);
     LayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    WidgetModule,
     SearchResultTileModule,
   ],
   providers: [
