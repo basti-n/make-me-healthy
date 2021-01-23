@@ -1,0 +1,9 @@
+<div class="">
+  <h4 class="list-group-item-heading">{{ item?.headline }}</h4>
+
+  <div class="avatar" *ngIf="item?.imageUrl">
+    <img [appImageFallback] class="avatar" [src]="item?.imageUrl" alt="avatar" />
+  </div>
+
+  <app-widget-bullets [bullets]="item?.bullets"></app-widget-bullets>
+</div>
