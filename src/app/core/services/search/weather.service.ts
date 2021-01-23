@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import weather from './weatherdata.json';
 
 @Injectable({ providedIn: 'root' })
-export class WeatherService extends SearchService<WeatherDTO> {
+export class WeatherSearchService extends SearchService<WeatherDTO> {
   private readonly data: WeatherDTO;
 
   constructor() {

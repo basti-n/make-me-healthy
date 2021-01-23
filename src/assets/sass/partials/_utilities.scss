@@ -714,6 +714,10 @@ i.bg-aero {
   display: -webkit-flex;
   display: flex;
 
+  &.align-center {
+    align-items: center;
+  }
+
   &--column {
     -webkit-flex-direction: column;
     flex-direction: column;
