@@ -2,7 +2,7 @@ export interface WeatherDTO {
   days: WeatherDay[];
 }
 
-interface WeatherDay {
+export interface WeatherDay {
   Datum: string;
   Zeit: string;
   'Temp. A.': number;
