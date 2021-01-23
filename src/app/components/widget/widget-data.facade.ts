@@ -83,8 +83,8 @@ export class WidgetDataFacade {
       headline: `${weatherDay.Datum} - ${weatherDay.Zeit} Uhr`,
       bullets: [
         { label: 'Temperatur', value: `${weatherDay['Temp. A.']} Grad` },
-        { label: 'Luftdruck', value: weatherDay.Luftdruck },
-        { label: 'Regen', value: weatherDay.Regen },
+        { label: 'Luftdruck', value: `${weatherDay.Luftdruck} hPa` },
+        { label: 'Niederschlag', value: `${weatherDay.Regen} l/m²` },
       ],
       imageUrl: this.weatherUiService.getIcon(weatherDay),
     };
@@ -96,7 +96,7 @@ export class WidgetDataFacade {
       bullets: [
         { label: 'Answer Count', value: item.answer_count },
         { label: 'View Count', value: item.view_count },
-        { label: 'Topics', value: item.tags.join(', ') },
+        { label: 'Topics', value: item.tags.join(' | ') },
       ],
       imageUrl: item.owner?.profile_image,
     };
