@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ImageFallbackDirective } from 'app/core/directives';
 import { SearchItemDTO } from 'app/core/models/dtos/stackexchange-search-item.dto';
 import { UnixTimeToDatetimePipe } from 'app/core/pipes';
+import { SanitizeHtmlPipe } from 'app/core/pipes/sanitize-html.pipe';
 import { SearchResultTileComponent } from './search-result-tile.component';
 
 const mockResult: SearchItemDTO = {
@@ -40,6 +41,7 @@ describe('SearchResultTileComponent', () => {
           SearchResultTileComponent,
           UnixTimeToDatetimePipe,
           ImageFallbackDirective,
+          SanitizeHtmlPipe
         ],
       }).compileComponents();
     })
