@@ -57,6 +57,6 @@ export class WeatherUiService {
   }
 
   private isHot(weatherDay: WeatherDay): boolean {
-    return weatherDay['Temp. A'] > 20;
+    return weatherDay['Temp. A.'] > 20;
   }
 }

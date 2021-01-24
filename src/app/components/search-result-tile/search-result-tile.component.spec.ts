@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ImageFallbackDirective } from 'app/core/directives';
 import { SearchItemDTO } from 'app/core/models/dtos/stackexchange-search-item.dto';
 import { UnixTimeToDatetimePipe } from 'app/core/pipes';
 import { SearchResultTileComponent } from './search-result-tile.component';
 
 const mockResult: SearchItemDTO = {
-  tags: ['java'],
+  tags: ['java', 'rust'],
   owner: {
     reputation: 7,
     user_id: 15007507,
@@ -54,5 +55,33 @@ describe('SearchResultTileComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the result title', () => {
+    const title = fixture.debugElement.query(
+      By.css('.list-group-item-heading > h3')
+    ).nativeElement;
+
+    expect(title.textContent).toBe(component.result.title);
+  });
+
+  it('should render each tag', () => {
+    const tags: HTMLSpanElement[] = fixture.debugElement
+      .queryAll(By.css('.tag'))
+      .map((debugElement) => debugElement.nativeElement);
+
+    expect(tags.length).toEqual(component.result.tags.length);
+    expect(
+      tags.every(
+        (tag, index) => tag.textContent === component.result.tags[index]
+      )
+    );
+  });
+
+  it('should render the profile image', () => {
+    const image: HTMLImageElement = fixture.debugElement.query(
+      By.css('.avatar')
+    ).nativeElement;
+    expect(image.src).toEqual(component.result.owner.profile_image);
   });
 });
