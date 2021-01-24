@@ -17,6 +17,7 @@
       <app-search-result-tile
         *ngFor="let item of result.items"
         [result]="item"
+        [fallbackImage]="fallbackImage"
       ></app-search-result-tile>
     </div>
     <div *ngIf="!result?.items?.length">No Results Found!</div>
