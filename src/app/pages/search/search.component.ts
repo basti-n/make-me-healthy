@@ -18,6 +18,8 @@ import { switchMap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
+  readonly fallbackImage =
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/200px-Stack_Overflow_icon.svg.png';
   readonly formControl = new FormControl();
   searchResult$: Observable<StackexchangeSearchDTO>;
 
