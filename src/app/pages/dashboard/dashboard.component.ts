@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { widgetAnimation } from 'app/core/animations';
 import { WidgetConfig } from 'app/core/models/definitions';
 import configs from '../../../assets/configs/widget.config.json';
 
@@ -7,6 +9,7 @@ import configs from '../../../assets/configs/widget.config.json';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [widgetAnimation],
 })
 export class DashboardComponent implements OnInit {
   widgetConfigs: WidgetConfig[];
@@ -15,5 +18,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.widgetConfigs = configs.widgetConfigs as WidgetConfig[];
+  }
+
+  prepareRoute(outlet: RouterOutlet): string {
+    return outlet?.activatedRoute?.pathFromRoot.join();
   }
 }

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LayoutModule } from './core/layout/layout.module';
@@ -22,6 +23,7 @@ registerLocaleData(localeDe);
     AppRoutingModule,
     ReactiveFormsModule,
     SearchResultTileModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientIdInterceptor, multi: true },
