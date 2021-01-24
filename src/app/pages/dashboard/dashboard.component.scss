@@ -1,12 +1,5 @@
 @import 'src/styles.scss';
 
-$extra-margin: 10vw;
-
-::ng-deep router-outlet ~ * {
-  position: absolute;
-  width: calc(100vw - #{$sidebar-width} - #{$extra-margin});
-}
-
 nav {
   cursor: pointer;
 
