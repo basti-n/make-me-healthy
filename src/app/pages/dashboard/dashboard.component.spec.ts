@@ -11,6 +11,7 @@ import { AppRoutingModule } from 'app/app.routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { Router, RouterLink } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -20,7 +21,11 @@ describe('DashboardComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [AppRoutingModule, RouterTestingModule.withRoutes([])],
+        imports: [
+          AppRoutingModule,
+          RouterTestingModule.withRoutes([]),
+          NoopAnimationsModule,
+        ],
         declarations: [DashboardComponent],
       }).compileComponents();
     })
@@ -29,6 +34,12 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+
+    // Deactivate Route Animation (Activation)
+    component.prepareRoute = () => {
+      return '';
+    };
+
     router = TestBed.inject(Router);
     fixture.detectChanges();
   });

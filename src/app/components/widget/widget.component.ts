@@ -4,12 +4,14 @@ import { WidgetItem } from 'app/core/models/definitions/widget.item';
 import { Observable } from 'rxjs';
 import { WidgetDataFacade } from './widget-data.facade';
 import { Location } from '@angular/common';
+import { widgetAnimation } from 'app/core/animations';
 
 @Component({
   selector: 'app-widget',
   templateUrl: './widget.component.html',
   styleUrls: ['./widget.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [widgetAnimation],
 })
 export class WidgetComponent implements OnInit {
   data$: Observable<WidgetItem[]>;

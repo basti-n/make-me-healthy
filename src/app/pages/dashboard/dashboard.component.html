@@ -10,4 +10,6 @@
   </li>
 </nav>
 
-<router-outlet></router-outlet>
+<div class="active-widget" [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
