@@ -54,4 +54,26 @@ describe('StackExchangeSearchService', () => {
       expect(result).toEqual(mockResult);
     });
   });
+
+  describe('isSearchRequest', () => {
+    it('should return false if url does not include search', () => {
+      const testUrl = 'api.stackexchange/info';
+      const result = service.isSearchRequest(testUrl);
+
+      expect(result).toBeFalsy();
+    });
+    it('should return false if url does not include stackexchange', () => {
+      const testUrl = 'api.bitbucket/search';
+      const result = service.isSearchRequest(testUrl);
+
+      expect(result).toBeFalsy();
+    });
+
+    it('should return true if url includes stackexchange and search', () => {
+      const testUrl = 'api.stackexchange/search';
+      const result = service.isSearchRequest(testUrl);
+
+      expect(result).toBeTruthy();
+    });
+  });
 });
