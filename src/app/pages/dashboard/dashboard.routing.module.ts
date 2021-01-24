@@ -16,14 +16,17 @@ export const dashboardRoutes: Routes = [
       {
         path: 'angular',
         component: WidgetComponent,
+        data: { animations: 'angular' },
       },
       {
         path: 'typescript',
         component: WidgetComponent,
+        data: { animations: 'typescript' },
       },
       {
         path: 'weather',
         component: WidgetComponent,
+        data: { animations: 'weather' },
       },
     ],
   },

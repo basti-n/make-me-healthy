@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 
 export const widgetAnimation = trigger('routeAnimations', [
-  transition('* => *', [
+  transition('* => typescript, * => angular, * => weather', [
     query(':enter', [style({ opacity: 0 })], { optional: true }),
 
     query(
