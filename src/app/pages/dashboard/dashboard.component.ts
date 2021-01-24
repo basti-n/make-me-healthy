@@ -21,6 +21,6 @@ export class DashboardComponent implements OnInit {
   }
 
   prepareRoute(outlet: RouterOutlet): string {
-    return outlet?.activatedRoute?.pathFromRoot.join();
+    return outlet?.activatedRouteData?.animations;
   }
 }
